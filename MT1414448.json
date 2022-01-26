@@ -1,0 +1,101 @@
+{
+  "accessKey": "LTAI5tKvuyBdt5eWEguruMJa",
+  "deviceName": "touchme",
+  "accessKeySecret": "95BJKSJE7cgMBckLoguwoCWl7oWYPn",
+  "iotId": "144a8c15459318844a6b60080b421411",
+  "token": "kaZQXBNnt5RyT7C7dhcxIodT2Lj06Y",
+  "companyCode": "1002",
+  "priceCode": "500081MT",
+  "roomTypeMaps": [
+    {
+      "otaRoomType": {
+        "roomTypeId": "111085311",
+        "roomTypeName": "特惠大床房 hot"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000815",
+        "roomTypeName": "特惠大床房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110265588",
+        "roomTypeName": "商务双人房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000811",
+        "roomTypeName": "豪华双人房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110265978",
+        "roomTypeName": "浪漫情趣房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000812",
+        "roomTypeName": "主题大床房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110261867",
+        "roomTypeName": "轻奢双人房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000816",
+        "roomTypeName": "轻奢双人房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110268585",
+        "roomTypeName": "商务套房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000818",
+        "roomTypeName": "豪华套房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "111085444",
+        "roomTypeName": "暖心特惠大床房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000815",
+        "roomTypeName": "特惠大床房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110268206",
+        "roomTypeName": "棋牌房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000817",
+        "roomTypeName": "豪华娱乐房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "110266686",
+        "roomTypeName": "舒适三人间"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000818",
+        "roomTypeName": "家庭亲子房"
+      }
+    },
+    {
+      "otaRoomType": {
+        "roomTypeId": "111084978",
+        "roomTypeName": "轻奢大床房"
+      },
+      "pmsRoomType": {
+        "roomTypeId": "5000814",
+        "roomTypeName": "轻奢大床房"
+      }
+    }
+  ]
+}
