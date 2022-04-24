@@ -1,0 +1,85 @@
+#镜像列表
+docker images
+#查找镜像
+docker search IMAGE_NAME
+#获取镜像
+docker pull IMAGE_NAME
+#删除镜像
+docker rmi IMAGE_NAME
+#构建镜像
+#附加参数 -t: 指定要创建的目标镜像名。
+docker build -t IMAGE_NAME PATH
+#设置镜像标签
+docker tag CONTAINER_ID AUTHOR/IMAGE_NAME:TAG
+#推送镜像
+docker push AUTHOR/IMAGE_NAME:TAG
+
+
+#启动容器
+#附加参数 -i: 交互式操作。-t: 终端。-d: 后台运行。-P: 将容器内部使用的网络端口随机映射到我们使用的主机上。-p : 容器内部端口绑定到指定的主机端口(默认绑定TCP, 指定可以在端口后面加上 /udp)。
+#--name: 指定容器的名字。--network: 连接到指定的网络。
+docker run ubuntu /bin/bash
+#查看容器
+#附加参数 -a: 查看已停止运行的容器。-l: 查询最后一次创建的容器。
+docker ps
+#启动容器
+docker start CONTAINER_ID
+#停止容器
+docker stop CONTAINER_ID
+#重启容器
+docker restart CONTAINER_ID
+#进入容器attach: 退出后会停止。exec: 退出后保持运行。
+docker attach CONTAINER_ID
+docker exec CONTAINER_ID
+#删除容器
+docker rm -f CONTAINER_ID
+#查看到容器的端口映射
+docker port CONTAINER_ID | CONTAINER_NAME
+#查看容器内部的标准输出
+#附加参数 -f: 像使用 tail -f 一样来输出容器内部的标准输出。
+docker logs CONTAINER_ID
+#查看容器内部运行的进程
+docker top CONTAINER_NAME
+
+
+#新建网络
+#附加参数 -d：参数指定 Docker 网络类型，有 bridge、overlay。
+docker network create NETWORK_NAME
+#查看network对象列表
+docker network ls
+#查看network详情
+docker inspect NETWORK_NAME
+#删除network(prune是删除已不被任何容器使用的network)
+docker network rm/prune NETWORK_NAME
+#容器绑定network
+docker network connect NETWORK_NAME CONTAINER_ID
+#容器解绑network
+docker network disconnect NETWORK_NAME CONTAINER_ID
+
+#Docker Hub登录
+docker login
+#Docker Hub退出登录
+docker logout
+
+
+#IDEA远程配置
+mkdir docker/cert && cd /docker/cert
+openssl genrsa -aes256 -out ca-key.pem 4096
+openssl req -new -x509 -days 365 -key ca-key.pem -sha256 -out ca.pem
+openssl genrsa -out server-key.pem 4096
+openssl req -subj "/CN=122.112.219.61" -sha256 -new -key server-key.pem -out server.csr
+echo subjectAltName = IP:0.0.0.0,IP:122.112.219.61 >> extfile.cnf
+echo extendedKeyUsage = serverAuth >> extfile.cnf
+openssl x509 -req -days 365 -sha256 -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -extfile extfile.cnf
+openssl genrsa -out key.pem 4096
+openssl req -subj '/CN=client' -new -key key.pem -out client.csr
+echo extendedKeyUsage = clientAuth >> extfile.cnf
+openssl x509 -req -days 365 -sha256 -in client.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out cert.pem -extfile extfile.cnf
+rm -f -v client.csr server.csr
+chmod -v 0400 ca-key.pem key.pem server-key.pem
+chmod -v 0444 ca.pem server-cert.pem cert.pem
+cp server-*.pem /etc/docker/ && cp ca.pem /etc/docker/
+systemctl daemon-reload
+systemctl restart docker
+#文件配置
+ExecStart=/usr/bin/dockerd --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server-cert.pem --tlskey=/etc/docker/server-key.pem -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
